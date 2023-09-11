@@ -1,0 +1,36 @@
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="/usuarios">Usuario</a>
+      <a mat-list-item href="/producto">Producto</a>
+      <a mat-list-item href="/carrito">Carrito</a>
+      <a mat-list-item href="/orden">Orden</a>
+      <a mat-list-item href="/orden-detalle">Detalle de la orden</a>
+      <a mat-list-item href="/vivienda">Domicilio</a>
+      <a mat-list-item href="/metodo-pago">Metodo de pago</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>BocadoExpress</span>
+      <ngx-avatars class="avatar" name="Manuel Amaya"></ngx-avatars>
+    </mat-toolbar>
+  <router-outlet></router-outlet>
+    
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

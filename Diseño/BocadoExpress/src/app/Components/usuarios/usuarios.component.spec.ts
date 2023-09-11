@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { UsuariosComponent } from './UsuariosComponent';
+
+describe('UsuariosComponent', () => {
+  let component: UsuariosComponent;
+  let fixture: ComponentFixture<UsuariosComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [UsuariosComponent]
+    });
+    fixture = TestBed.createComponent(UsuariosComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
