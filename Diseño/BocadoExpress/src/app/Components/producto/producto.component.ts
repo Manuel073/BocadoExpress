@@ -17,6 +17,6 @@ export class ProductoComponent implements OnInit {
         this.get();
     }
     public get(){
-        this.api.Get("productos");
+        this.api.Get("Productoes");
     }
 }

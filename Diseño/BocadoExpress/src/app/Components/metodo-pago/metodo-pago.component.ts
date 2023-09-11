@@ -15,7 +15,7 @@ export class MetodoPagoComponent implements OnInit {
       this.get();
   }
   public get(){
-      this.api.Get("metodo.pago");
+      this.api.Get("MetodoPago");
   }
 }
 

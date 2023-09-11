@@ -14,7 +14,7 @@ export class OrdenDetalleComponent implements OnInit {
       this.get();
   }
   public get(){
-      this.api.Get("orden-detalle");
+      this.api.Get("OrdenDetalle");
   }
 } {
 }
