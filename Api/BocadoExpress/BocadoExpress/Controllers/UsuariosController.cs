@@ -24,20 +24,20 @@ namespace BocadoExpress.Controllers
 
         // GET: api/Usuarios
         [HttpGet]
-        public object GetUsuarios()
+        public async Task<ActionResult<object>> GetUsuarios()
         {
-        
+            dynamic resp = new ExpandoObject();
             //La condicion que solo me traiga los valores true =0
-            var UserGetEnabled =  _context.Usuarios.Where(s => s.Status == 0).Select(s => new
-            {
-                  idControl=s.IdUsuario.ToString(),
-                  Name=s.Nombre.ToString(),
-                  Pswd=s.Contraseña.ToString(),
-                  Date=s.FechaCreaUsu.ToString()
-            }).ToList();
+            var response = await _context.Usuarios.Where(s => s.Status == 0).ToListAsync();
+            resp.data = response;
 
-           
-            return UserGetEnabled;
+            if (response.Count()==0)
+            {
+                resp.data = null;
+                return resp;
+            }
+
+            return resp;
         }
 
         // GET: api/Usuarios/5
@@ -94,6 +94,9 @@ namespace BocadoExpress.Controllers
         [HttpPost]
         public async Task<ActionResult<Vivienda>> PostUsuario(Vivienda usuario)
         {
+
+            dynamic resp = new ExpandoObject();
+
           if (_context.Usuarios == null)
           {
               return Problem("Entity set 'BocadoExpressContext.Usuarios'  is null.");
@@ -101,7 +104,9 @@ namespace BocadoExpress.Controllers
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsuario", new { id = usuario.IdUsuario }, usuario);
+            resp.response = "La informacion se ha insertado correctamente.";
+
+            return resp;
         }
 
         // DELETE: api/Usuarios/5

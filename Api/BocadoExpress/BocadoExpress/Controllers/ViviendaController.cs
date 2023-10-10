@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BocadoExpress.Models;
 using Microsoft.Data.SqlClient;
+using BocadoExpress.ModelsView;
 
 namespace BocadoExpress.Controllers
 {
@@ -23,20 +24,11 @@ namespace BocadoExpress.Controllers
 
         // GET: api/Vivienda
         [HttpGet]
-        public object GetVivienda()
+        public async Task<ActionResult<IEnumerable<ViviendaView>>> GetOrden()
         {
 
-            var ViviendaGetEnabled = _context.Vivienda.Where(s => s.Status == 0).Select(s => new
-            {
-                idControl = s.IdVivienda.ToString(),
-                IdUsu = s.IdUsu.ToString(),
-                Direccion = s.Direccion.ToString(),
-                Barrio = s.Barrio.ToString(),
-                Ciudad = s.Ciudad.ToString()
-            }).ToList();
+            return await _context.ViviendaView.ToListAsync();
 
-            
-            return ViviendaGetEnabled;
         }
 
         // GET: api/Vivienda/5
@@ -105,7 +97,7 @@ namespace BocadoExpress.Controllers
 
         // DELETE: api/Vivienda/5
         [HttpDelete("{id}")]
-        public async Task<object> DeleteVivienda(int id)
+        public object DeleteVivienda(int id)
         {
 
             //Creamos un objeto dinamico

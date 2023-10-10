@@ -22,3 +22,10 @@
   
 }
 
+.color{
+  background-color: #42a5f5;
+  color: white;
+}
+.opcion{
+  cursor: pointer;
+}

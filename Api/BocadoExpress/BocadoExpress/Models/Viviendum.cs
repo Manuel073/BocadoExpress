@@ -17,7 +17,7 @@ public partial class Viviendum
 
     public byte? Status { get; set; }
 
-    public virtual Vivienda? IdUsuNavigation { get; set; }
+    //public virtual Vivienda? IdUsuNavigation { get; set; }
 
     //public virtual ICollection<Orden> Ordens { get; set; } = new List<Orden>();
 }

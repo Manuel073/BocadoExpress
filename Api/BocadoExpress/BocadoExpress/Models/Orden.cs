@@ -17,11 +17,11 @@ public partial class Orden
 
     public byte? Status { get; set; }
 
-    public virtual MetodoPago? IdMetodoPaNavigation { get; set; }
+    //public virtual MetodoPago? IdMetodoPaNavigation { get; set; }
 
-    public virtual Vivienda? IdUsuNavigation { get; set; }
+    //public virtual Vivienda? IdUsuNavigation { get; set; }
 
-    public virtual Viviendum? IdVivienNavigation { get; set; }
+    //public virtual Viviendum? IdVivienNavigation { get; set; }
 
-    public virtual ICollection<OrdenDetalle> OrdenDetalles { get; set; } = new List<OrdenDetalle>();
+    //public virtual ICollection<OrdenDetalle>? OrdenDetalles { get; set; } = new List<OrdenDetalle>();
 }

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using BocadoExpress.ModelsView;
 using Microsoft.EntityFrameworkCore;
 
 namespace BocadoExpress.Models;
 
 public partial class BocadoExpressContext : DbContext
 {
+    internal object CarritoView;
+
     public BocadoExpressContext()
     {
     }
@@ -17,7 +20,7 @@ public partial class BocadoExpressContext : DbContext
 
     public virtual DbSet<Carrito> Carritos { get; set; }
 
-    public virtual DbSet<MetodoPago> MetodoPagos { get; set; }
+    public virtual DbSet<MetodoPago> MetodoPago { get; set; }
 
     public virtual DbSet<Orden> Ordens { get; set; }
 
@@ -28,6 +31,15 @@ public partial class BocadoExpressContext : DbContext
     public virtual DbSet<Vivienda> Usuarios { get; set; }
 
     public virtual DbSet<Viviendum> Vivienda { get; set; }
+
+    public virtual DbSet<OrdenView> OrdenView { get; set; }
+
+    public virtual DbSet<OrdenDetalleView>OrdenDetalleView { get; set; }
+    public virtual DbSet<CarritoViews> CarritoViews { get; set; }
+    public virtual DbSet<ViviendaView> ViviendaView { get; set; }
+
+    public IEnumerable<object> MetodoPagos { get; internal set; }
+    
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -57,6 +69,44 @@ public partial class BocadoExpressContext : DbContext
               //  .HasConstraintName("FK_Carrito_Usuario");
         });
 
+        modelBuilder.Entity<OrdenView>(entity =>
+        {
+            entity.HasKey(e => e.Orden).HasName("Orden");
+            entity.Property(e => e.Total).HasColumnName("Total");
+            entity.Property(e => e.Nombre).HasColumnName("Nombre");
+            entity.Property(e => e.Ciudad).HasColumnName("Ciudad");
+            entity.Property(e => e.MetodoPago).HasColumnName("MetodoPago");
+            entity.Property(e => e.Estado).HasColumnName("Estado");
+            
+
+        });
+
+        modelBuilder.Entity<OrdenDetalleView>(entity => {
+            entity.HasKey(e => e.OrdenDetalle).HasName("OrdenDetalle");
+            entity.Property(e => e.total).HasColumnName("Total");
+            entity.Property(e => e.nombre).HasColumnName("Nombre");
+            entity.Property(e => e.Precio).HasColumnName("Precio");
+            entity.Property(e => e.Cantidad).HasColumnName("Cantidad");
+            entity.Property(e => e.Estado).HasColumnName("Estado");
+        });
+
+        modelBuilder.Entity<CarritoViews>(entity => {
+            entity.HasKey(e => e.Carrito).HasName("Carrito");
+            entity.Property(e => e.NombreUsuario).HasColumnName("NombreUsuario");
+            entity.Property(e => e.NombreProducto).HasColumnName("NombreProducto");
+            entity.Property(e => e.cantidad).HasColumnName("Cantidad");
+            entity.Property(e => e.Estado).HasColumnName("Estado");
+        });
+
+        modelBuilder.Entity<ViviendaView>(entity => {
+            entity.HasKey(e => e.Vivienda).HasName("Vivienda");
+            entity.Property(e => e.Nombre).HasColumnName("Nombre");
+            entity.Property(e => e.Direccion).HasColumnName("Direccion");
+            entity.Property(e => e.Barrio).HasColumnName("Barrio");
+            entity.Property(e => e.Ciudad).HasColumnName("Ciudad");
+            entity.Property(e => e.Estado).HasColumnName("Estado");
+        });
+
         modelBuilder.Entity<MetodoPago>(entity =>
         {
             entity.HasKey(e => e.IdMetodopago);
@@ -64,7 +114,7 @@ public partial class BocadoExpressContext : DbContext
             entity.ToTable("Metodo_pago");
 
             entity.Property(e => e.IdMetodopago).HasColumnName("id_metodopago");
-            entity.Property(e => e.Nombre)
+            entity.Property(e => e.nombremetod)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("nombre");
@@ -84,9 +134,9 @@ public partial class BocadoExpressContext : DbContext
             entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.Total).HasColumnName("total");
 
-            entity.HasOne(d => d.IdMetodoPaNavigation).WithMany(p => p.Ordens)
-                .HasForeignKey(d => d.IdMetodoPa)
-                .HasConstraintName("FK_Orden_Metodo_pago");
+            //entity.HasOne(d => d.IdMetodoPaNavigation).WithMany(p => p.Ordens)
+              //  .HasForeignKey(d => d.IdMetodoPa)
+                //.HasConstraintName("FK_Orden_Metodo_pago");
 
             //entity.HasOne(d => d.IdUsuNavigation).WithMany(p => p.Ordens)
                // .HasForeignKey(d => d.IdUsu)
@@ -110,9 +160,9 @@ public partial class BocadoExpressContext : DbContext
             entity.Property(e => e.Precio).HasColumnName("precio");
             entity.Property(e => e.Status).HasColumnName("status");
 
-            entity.HasOne(d => d.IdOrdeNavigation).WithMany(p => p.OrdenDetalles)
-                .HasForeignKey(d => d.IdOrde)
-                .HasConstraintName("FK_Orden_detalle_Orden");
+            //entity.HasOne(d => d.IdOrdeNavigation).WithMany(p => p.OrdenDetalles)
+              //  .HasForeignKey(d => d.IdOrde)
+                //.HasConstraintName("FK_Orden_detalle_Orden");
 
             //entity.HasOne(d => d.IdProducNavigation).WithMany(p => p.OrdenDetalles)
                 //.HasForeignKey(d => d.IdProduc)

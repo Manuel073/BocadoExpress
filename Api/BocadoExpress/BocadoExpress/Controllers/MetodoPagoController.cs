@@ -23,28 +23,28 @@ namespace BocadoExpress.Controllers
 
         // GET: api/MetodoPago
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MetodoPago>>> GetMetodoPagos(ActionResult<IEnumerable<MetodoPago>> metodoPagoGetEnabled)
+        public object GetMetodoPago()
         {
-            var MetodoPagoGetEnabled = _context.MetodoPagos.Where(s => s.Status == 0).Select(s => new
+            var MetodoPagoGetEnabled = _context.MetodoPago.Where(s => s.Status == 0).Select(s => new
             {
                 IdMetodopago = s.IdMetodopago.ToString(),
-                Name = s.Nombre.ToString(),
+                nombre = s.nombremetod.ToString()
 
             }).ToList();
 
 
-            return metodoPagoGetEnabled;
+            return MetodoPagoGetEnabled;
         }
 
         // GET: api/MetodoPago/5
         [HttpGet("{id}")]
         public async Task<ActionResult<MetodoPago>> GetMetodoPago(int id, ActionResult<MetodoPago> metodoPagoGetEnabled)
         {
-            if (_context.MetodoPagos == null)
+            if (_context.MetodoPago == null)
             {
                 return NotFound();
             }
-            var MetodoPago = await _context.MetodoPagos.FindAsync(id);
+            var MetodoPago = await _context.MetodoPago.FindAsync(id);
 
             if (MetodoPago == null)
             {
@@ -59,7 +59,7 @@ namespace BocadoExpress.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMetodoPago(int id, MetodoPago metodoPago)
         {
-            if (id != metodoPago.IdMetodoPago)
+            if (id != metodoPago.IdMetodopago)
             {
                 return BadRequest();
             }
@@ -90,11 +90,11 @@ namespace BocadoExpress.Controllers
         [HttpPost]
         public async Task<ActionResult<MetodoPago>> PostMetodoPago(MetodoPago metodoPago)
         {
-          if (_context.MetodoPagos == null)
+          if (_context.MetodoPago == null)
           {
               return Problem("Entity set 'BocadoExpressContext.MetodoPagos'  is null.");
           }
-            _context.MetodoPagos.Add(metodoPago);
+            _context.MetodoPago.Add(metodoPago);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetMetodoPago", new { id = metodoPago.IdMetodopago }, metodoPago);
@@ -102,7 +102,7 @@ namespace BocadoExpress.Controllers
 
         // DELETE: api/MetodoPago/5
         [HttpDelete("{id}")]
-        public async Task<object> DeleteMetodoPago(int id)
+        public object DeleteMetodoPago(int id)
         {
             //Creamos un objeto dinamico
             //dynamic ResultFinal = new ExpandoObject();
@@ -116,7 +116,7 @@ namespace BocadoExpress.Controllers
 
         private bool MetodoPagoExists(int id)
         {
-            return (_context.MetodoPagos?.Any(e => e.IdMetodopago == id)).GetValueOrDefault();
+            return (_context.MetodoPago?.Any(e => e.IdMetodopago == id)).GetValueOrDefault();
         }
     }
 }

@@ -31,7 +31,8 @@ namespace BocadoExpress.Controllers
                 idControl = s.IdProducto.ToString(),
                 Nombre = s.Nombre.ToString(),
                 Fecha = s.Fecha.ToString(),
-                Precio = s.Precio.ToString()
+                Precio = s.Precio.ToString(),
+                estado = s.Status.ToString()
             }).ToList();
 
 

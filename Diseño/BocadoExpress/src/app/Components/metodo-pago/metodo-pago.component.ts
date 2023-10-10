@@ -12,11 +12,42 @@ export class MetodoPagoComponent implements OnInit {
 
   
   ngOnInit(): void {
-      this.get();
+      this.getMetodopago();
+      this.postMetodopago();
+      this.putMetodopago();
+      this.deleteMetodopago();
+    
   }
-  public get(){
-      this.api.Get("MetodoPago");
+  public getMetodopago(){
+      this.api.Get("metodo-pago");
   }
+
+  public postMetodopago(){
+    this.api.Post("metodo-pago", {
+        
+      
+      nombremetod: "Daviplata",
+      status: 0,
+    })
+  }
+
+  public putMetodopago(){
+    this.api.Put("metodo-pago", 1,{
+    
+      nombremetod: "Daviplata",
+      status: 0,
+    }, )
+  }
+
+  public deleteMetodopago(){
+    this.api.Delete("metodo-pago", {
+      
+      nombremetod: "Daviplata",
+      status: 0,
+    }, "1")
+  }
+
+
 }
 
 

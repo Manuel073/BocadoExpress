@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BocadoExpress.Models;
 using Microsoft.Data.SqlClient;
+using BocadoExpress.ModelsView;
 
 namespace BocadoExpress.Controllers
 {
@@ -22,19 +23,11 @@ namespace BocadoExpress.Controllers
 
         // GET: api/Carrito
         [HttpGet]
-        public object GetCarrito()
+        public async Task<ActionResult<IEnumerable<CarritoViews>>> GetOrden()
         {
 
-            var CarritoGetEnabled = _context.Carritos.Where(s => s.Status == 0).Select(s => new
-            {
-                idControl = s.IdCarrito.ToString(),
-                IdUsu = s.IdUsu.ToString(),
-                IdProduc = s.IdProduc.ToString(),
-                Cantidad = s.Cantidad.ToString()
-            }).ToList();
+            return await _context.CarritoViews.ToListAsync();   
 
-
-            return CarritoGetEnabled;
         }
 
         // GET: api/Carrito/5

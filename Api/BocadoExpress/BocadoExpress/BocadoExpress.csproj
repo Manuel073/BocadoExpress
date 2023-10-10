@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ModelsView\OrdenDetalleView.cs~RF6513c246.TMP" />
     <None Remove="Models\Viviendum.cs~RF4863f083.TMP" />
   </ItemGroup>
 

@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BocadoExpress.Models;
 using Microsoft.Data.SqlClient;
+using BocadoExpress.ModelsView;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Dynamic;
 
 namespace BocadoExpress.Controllers
 {
@@ -23,27 +26,15 @@ namespace BocadoExpress.Controllers
 
         // GET: api/Orden
         [HttpGet]
-        public object GetOrdens()
+        public async Task<ActionResult<IEnumerable<OrdenView>>> GetOrden()
         {
 
-            //La condicion que solo me traiga los valores true =0
-            var OrdenGetEnabled = _context.Ordens.Where(s => s.Status == 0).Select(s => new
-            {
-                IdOrden = s.IdOrden.ToString(),
-                IdUsu = s.IdUsu.ToString(),
-                IdMetodoPa = s.IdMetodoPa.ToString(),
-                Total = s.Total.ToString(),
-                IdVivien = s.IdVivien.ToString()
-                
-            }).ToList();
-
-
-            return OrdenGetEnabled;
-        }
-
+            return await _context.OrdenView.ToListAsync();
+            
+        } 
         // GET: api/Orden/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Orden>> GetOrdens(int id)
+        public async Task<ActionResult<Orden>> GetOrden(int id)
         {
             if (_context.Ordens == null)
             {

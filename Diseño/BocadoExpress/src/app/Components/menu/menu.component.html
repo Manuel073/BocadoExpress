@@ -12,11 +12,13 @@
       <a mat-list-item href="/orden">Orden</a>
       <a mat-list-item href="/orden-detalle">Detalle de la orden</a>
       <a mat-list-item href="/vivienda">Domicilio</a>
-      <a mat-list-item href="/metodo-pago">Metodo de pago</a>
+      <a mat-list-item href="/metodo-pago">Metodo Pago</a>
+      <a mat-list-item href="/form-producto">Formulario</a>
+      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar class="color">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -25,7 +27,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>BocadoExpress</span>
+      <span >BocadoExpress</span>
       <ngx-avatars class="avatar" name="Manuel Amaya"></ngx-avatars>
     </mat-toolbar>
   <router-outlet></router-outlet>
