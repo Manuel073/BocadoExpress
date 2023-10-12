@@ -7,7 +7,7 @@ import { OrdenComponent } from './Components/orden/orden.component';
 import { OrdenDetalleComponent } from './Components/orden-detalle/orden-detalle.component';
 import { ProductoComponent } from './Components/producto/producto.component';
 import { ViviendaComponent } from './Components/vivienda/vivienda.component';
-import { FormProductoComponent } from './Components/Forms/form-producto/form-producto.component';
+
 
 
 const routes: Routes = [
@@ -18,7 +18,6 @@ const routes: Routes = [
 {path: "orden-detalle",component:OrdenDetalleComponent},
 {path: "producto",component:ProductoComponent},
 {path: "vivienda",component:ViviendaComponent},
-{path: "form-producto",component:FormProductoComponent},
 
 ];
 

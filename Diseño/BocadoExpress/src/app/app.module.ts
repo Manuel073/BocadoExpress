@@ -31,6 +31,12 @@ import { FormMetodoPagoComponent } from './Components/Forms/form-metodo-pago/for
 import { FormCarritoComponent } from './Components/Forms/form-carrito/form-carrito.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -54,6 +60,11 @@ import {MatCardModule} from '@angular/material/card';
     
   ],
   imports: [
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatCardModule,
     MatInputModule,
     MatSortModule,
     MatPaginatorModule,
@@ -70,8 +81,7 @@ import {MatCardModule} from '@angular/material/card';
     // Specify AvatarModule as an import
     AvatarModule,
     FormsModule, 
-    ReactiveFormsModule,
-    MatCardModule
+    ReactiveFormsModule
     
   ],
   

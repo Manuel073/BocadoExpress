@@ -3,6 +3,11 @@ import { RestService } from "src/app/Services/rest.service";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormProductoComponent } from "../Forms/form-producto/form-producto.component";
+import { MatDialog } from "@angular/material/dialog";
+
+
+
 
 
 @Component({
@@ -16,10 +21,15 @@ export class ProductoComponent implements OnInit {
      @ViewChild(MatPaginator) paginator: MatPaginator;
      @ViewChild(MatSort) sort:MatSort;
     dataSource: MatTableDataSource<any>;
-    constructor(public api: RestService) {
+    constructor(public api: RestService, private matDialog:MatDialog) {
         this.dataSource=new MatTableDataSource();
     }
-
+    
+    openDialog(){
+        this.matDialog.open(FormProductoComponent,{
+            width:'350px',
+        })
+    }
 
     ngOnInit(): void {
         this.getProducto();
@@ -48,6 +58,9 @@ export class ProductoComponent implements OnInit {
           this.displayedColumns.push('Acciones')
         }
       }
+
+      
+      
       applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -56,6 +69,8 @@ export class ProductoComponent implements OnInit {
           this.dataSource.paginator.firstPage();
         }
       }
+
+     
 
     public postProducto(){
         this.api.Post("Productoes", {

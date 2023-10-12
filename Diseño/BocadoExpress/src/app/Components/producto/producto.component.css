@@ -27,3 +27,21 @@ table {
   .opcion{
     cursor: pointer;
   }
+
+
+
+  .boton{
+    padding: 1px 20px 5px 10px;
+    font-size: 15px;
+    cursor:pointer;
+   
+  }
+  
+  .agregar{
+    color:blueviolet;
+   margin-left: 10px;
+   position: relative;
+   bottom: -5px;
+   
+   
+  }

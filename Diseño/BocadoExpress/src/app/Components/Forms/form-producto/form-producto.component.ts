@@ -9,6 +9,11 @@ import Swal from 'sweetalert2';
 })
 export class FormProductoComponent {
 
+  selectedDate: Date;
+  
+  onDateSelected(event: any) {
+    this.selectedDate = event.value;
+  }
   productosForm= this.fb.group({
     
     Nombre: new FormControl("", Validators.required),
