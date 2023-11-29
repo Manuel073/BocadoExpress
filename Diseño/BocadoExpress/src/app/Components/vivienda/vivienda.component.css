@@ -26,3 +26,93 @@ table {
   .opcion{
     cursor: pointer;
   }
+  .boton{
+    padding: 2px 5px 8px 8px;
+    font-size: 15px;
+    cursor:pointer;
+    position: absolute;
+    font-family: cursive;
+    background-color: #2172c9; 
+    color: #fff; 
+    border:none; 
+    border-radius: 4px; 
+  }
+  .boton:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+  }
+  
+  .agregar{
+    color:rgb(255, 255, 255);
+   margin-left: 4px;
+   position: relative;
+   bottom: -7px;
+  }
+  
+
+  .formagregar{
+    margin-top: -515px;
+    margin-left: 1240px;
+   
+  }
+
+  .loading-container {
+    text-align: center;
+    
+}
+
+.carga{
+  text-align: center;
+  font-family: cursive;
+  color: white;
+  
+}
+  
+.spinner {
+    width: 100px;
+    height: 100px;
+    margin: 100px auto;
+    margin-top: 200px;
+    position: relative;
+    border: 8px solid transparent;
+    border-top-color: #3498db;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite, changeColor 4s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes changeColor {
+    0% {
+        border-top-color: #00f1dc;
+    }
+    25% {
+        border-top-color: #ff2740;
+    }
+    50% {
+        border-top-color: #37ff22;
+    }
+    75% {
+        border-top-color: #eeff00;
+    }
+    100% {
+        border-top-color: #ff2fdc;
+    }
+}
+.tabla{
+  padding:15px ;
+}
+
+.titulota{
+  color: white;
+  margin-top: 20px;
+  font-family: cursive;
+}
+
+.letter{
+  font-family: 'Courier New', Courier, monospace ;
+  text-align: center;
+}

@@ -1,0 +1,73 @@
+
+
+
+<mat-tab-group>
+
+    <mat-tab label="Ingresar"> 
+        <form [formGroup]="this.LoginUser">
+
+            <mat-card-header>
+                <div class="titulologin">
+                <mat-card-title class="ingreso">Ingresar</mat-card-title>
+                </div>
+               </mat-card-header>
+
+            
+            <input class="ingreUsu" type="text" placeholder="Nombre de usuario"  formControlName="usuario">
+           <br>
+           <mat-error *ngIf="LoginUser.controls['usuario'].hasError('required')">
+            El nombre de usuario es <strong>requerido</strong>
+        </mat-error>
+               
+
+            <br>
+            <input class="ingreContr"type="password" placeholder="Contraseña de usuario" formControlName="contraseña">
+            <br>
+
+            <button class="btnUsu"(click)="this.Onsubmit('deposit')">Ingresar usuario</button>
+        </form>
+         </mat-tab>
+
+
+    <mat-tab label="Registrar"> 
+        <form [formGroup]="this.LoginUser">
+            
+            <mat-card-header>
+                <div class="tituloregis">
+                <mat-card-title class="tituloregistro">Registrar usuario</mat-card-title>
+                </div>
+               </mat-card-header>
+           
+                    <input class="regiUsu" type="text" placeholder="Nombre de usuario"  formControlName="usuario">
+                    <br>
+                   <input class="regiContr"type="password" placeholder="Contraseña de usuario" formControlName="contraseña">
+                   <br>
+                   <input class="direcc" type="text" placeholder="Direccion de usuario"  formControlName="direccion">
+                   <br>
+                   <input class="tele" type="tel" placeholder="Telefono de usuario"  formControlName="celular">
+                   <br>
+                   <input class="correo" placeholder="Correo de usuario" formControlName="correo">
+                   <br>
+                   
+                   <button class="registrar" (click)="this.Onsubmit('Register')">Registrar usuario</button>
+             
+            </form>
+           </mat-tab>
+      
+               
+            
+
+            
+            
+    
+
+
+
+
+    <mat-tab label="Se Me olvido la contraseña"> 
+        <form [formGroup]="this.LoginUser">
+            <input type="text" formControlName="usuario">
+            <input type="password" formControlName="contraseña">
+            <button (click)="this.Onsubmit('Forgget')"> usuario.</button>
+        </form> </mat-tab>
+  </mat-tab-group>

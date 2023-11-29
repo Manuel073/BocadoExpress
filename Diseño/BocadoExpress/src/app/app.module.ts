@@ -13,9 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { AvatarModule } from 'ngx-avatars';
 import { HttpClientModule } from '@angular/common/http';
 import { CarritoComponent } from './Components/carrito/carrito.component';
-import { MetodoPagoComponent } from './Components/metodo-pago/metodo-pago.component';
 import { OrdenComponent } from './Components/orden/orden.component';
-import { OrdenDetalleComponent } from './Components/orden-detalle/orden-detalle.component';
 import { ProductoComponent } from './Components/producto/producto.component';
 import { ViviendaComponent } from './Components/vivienda/vivienda.component';
 import {MatTableModule} from '@angular/material/table';
@@ -33,9 +31,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {MatRadioModule} from '@angular/material/radio';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { OrdendetalleComponent } from './Components/ordendetalle/ordendetalle.component';
+import { MetodopagoComponent } from './Components/metodopago/metodopago.component';
+import { FormDataComponent } from './Services/Data_Formulario/form-data/form-data.component';
+import { LoginComponent } from './Components/login/login.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -44,9 +48,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     UsuariosComponent,
     MenuComponent,
     CarritoComponent,
-    MetodoPagoComponent,
     OrdenComponent,
-    OrdenDetalleComponent,
     ProductoComponent,
     ViviendaComponent,
     FormViviendaComponent,
@@ -56,10 +58,17 @@ import { MatNativeDateModule } from '@angular/material/core';
     FormOrdenComponent,
     FormMetodoPagoComponent,
     FormCarritoComponent,
+    OrdendetalleComponent,
+    MetodopagoComponent,
+    FormDataComponent,
+    LoginComponent,
     
     
   ],
   imports: [
+    
+    MatProgressSpinnerModule,
+    MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
@@ -81,11 +90,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     // Specify AvatarModule as an import
     AvatarModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule
     
   ],
   
-  providers: [],
+  providers: [FormDataComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

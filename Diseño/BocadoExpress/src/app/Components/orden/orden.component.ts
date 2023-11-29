@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { RestService } from 'src/app/Services/rest.service';
-
+import { MatDialog } from "@angular/material/dialog";
+import { FormOrdenComponent } from '../Forms/form-orden/form-orden.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-orden',
@@ -14,28 +16,38 @@ export class OrdenComponent implements OnInit {
   displayedColumns: string[]= [];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
+  
+  cargando:boolean;
   dataSource: MatTableDataSource<any>;
-  constructor(public api: RestService) {
+  constructor(public api: RestService, private matDialog:MatDialog) {
+    this.cargando=true;
     this.dataSource=new MatTableDataSource();
   }
-
+  ngAfterViewInit(): void {
+    this.paginator._intl.itemsPerPageLabel = 'Registros por pagina';
+    this.dataSource.paginator=this.paginator
+    this.dataSource.sort=this.sort;
+  }
+  openDialog(){
+    this.matDialog.open(FormOrdenComponent,{
+        width:'370px', 
+    })
+}
   
   ngOnInit(): void {
       this.get();
-      this.postOrden();
-      this.putOrden();
-      this.deleteOrden();
+      //this.postOrden();
+      //this.putOrden();
+      //this.deleteOrden();
   }
   public get(){
       this.api.Get("Orden").then((res)=>{
-
-        for (let index = 0; index < res.length; index++){
-          this.loadTable([res[index]])
-        }
-        this.dataSource.data=res
-        this.dataSource.paginator=this.paginator
-        this.dataSource.sort=this.sort;
-        console.log(res);
+        this.displayedColumns=Object.keys(res[0]);
+        this.dataSource.data=res;
+        this.displayedColumns.push('Acciones');
+       setTimeout(() => {
+        this.cargando=false;
+       }, 600);
       });
   }
 
@@ -58,38 +70,63 @@ export class OrdenComponent implements OnInit {
     }
   }
 
-  public postOrden(){
-    this.api.Post("orden", {
-      idOrden: "1",
-      idUsu: "1",
-      idMetodoPa: "1",
-      total: 60000,
-      idVivien: "1",
-      status:"0"
-     })
-}
+//   public postOrden(){
+//     this.api.Post("orden", {
+//       idOrden: "1",
+//       idUsu: "1",
+//       idMetodoPa: "1",
+//       total: 60000,
+//       idVivien: "1",
+//       status:"0"
+//      })
+// }
 
-  public putOrden(){
-    this.api.Put("orden", 1,{
-      idOrden: "1",
-      idUsu: "1",
-      idMetodoPa: "1",
-      total: 60000,
-      idVivien: "1",
-      status:"0"
+  // public putOrden(){
+  //   this.api.Put("orden", 1,{
+  //     idOrden: "1",
+  //     idUsu: "1",
+  //     idMetodoPa: "1",
+  //     total: 60000,
+  //     idVivien: "1",
+  //     status:"0"
+  //   })
+  // }
+
+  public deleteOrden(id){
+    this.api.Delete("orden",id)
+  }
+
+Eliminar(id){
+ 
+  Swal.fire({
+      title: '¿Desea eliminar la información?',
+      text: "Los cambios no se podran restablecer! ",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      
+      if (result.isConfirmed) {
+
+          Swal.fire(
+            'Información eliminada',
+            `La descipcion del elemento ${id} ha sido retirado.`,
+            'success'
+          )
+          
+          setInterval(()=>{
+          window.location.reload();
+          }, 2000)
+
+          this.deleteOrden(id) 
+      }
     })
   }
 
-  public deleteOrden(){
-    this.api.Delete("orden", {
-      idOrden: "1",
-      idUsu: "1",
-      idMetodoPa: "1",
-      total: 60000,
-      idVivien: "1",
-      status:"0"
-    },"2")
-  }
+
+
 }
 
-
+ 

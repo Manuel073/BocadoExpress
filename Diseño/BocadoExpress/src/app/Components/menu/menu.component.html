@@ -1,23 +1,62 @@
 
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container  class="sidenav-container" >
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="/usuarios">Usuario</a>
-      <a mat-list-item href="/producto">Producto</a>
-      <a mat-list-item href="/carrito">Carrito</a>
-      <a mat-list-item href="/orden">Orden</a>
-      <a mat-list-item href="/orden-detalle">Detalle de la orden</a>
-      <a mat-list-item href="/vivienda">Domicilio</a>
-      <a mat-list-item href="/metodo-pago">Metodo Pago</a>
+
+    <mat-toolbar style="background-color:#010103f3;"><font color="#ebf5ee"><span class="material-symbols-outlined">
+      menu</span> Menu</font></mat-toolbar>
       
+ 
+    <mat-nav-list style="background-color:#000000e0;">
+
       
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
+      <a  mat-list-item href="/usuarios"><font color="#ebf5ee"><span class="material-symbols-outlined">
+        person
+        </span> Usuario</font></a> <br>
+
+      
+      <a  mat-list-item href="/producto"><font color="#ebf5ee"><span class="material-symbols-outlined">
+        add_shopping_cart
+        </span> Producto</font></a> <br>
+
+
+      <a  mat-list-item href="/carrito"><font color="#ebf5ee"><span class="material-symbols-outlined">
+        shopping_cart
+        </span> Carrito</font></a> <br>
+
+
+      <a  mat-list-item href="/orden"><font color="#ebf5ee"><span class="material-symbols-outlined">
+        receipt_long
+        </span> Orden</font></a>
+        <br>
+
+
+      <a mat-list-item href="/ordendetalle"><font color="#ebf5ee"><span class="material-symbols-outlined">
+        fact_check
+        </span> Orden detalle</font></a>
+        <br>
+
+
+      <a  mat-list-item href="/vivienda"><font color="#ebf5ee"><span class="material-symbols-outlined">
+        house
+        </span> Vivienda</font></a>
+        <br>
+
+
+      <a  mat-list-item href="/metodopago"><font color="#ebf5ee"><span class="material-symbols-outlined">
+        monetization_on
+        </span> Metodo Pago</font></a>
+        <br><br>
+
+      <a  mat-list-item href="/orden"></a>
+          <br>
+      
+    </mat-nav-list >
+  </mat-sidenav >
+
+  <mat-sidenav-content style="background-color: #0C0D0F;">
     <mat-toolbar class="color">
       <button
         type="button"
@@ -29,9 +68,12 @@
       </button>
       <span >BocadoExpress</span>
       <ngx-avatars class="avatar" name="Manuel Amaya"></ngx-avatars>
+      
+
+      <p class="textoava">hola</p>
+      <button class="cerrarses">Cerrar sesión</button>
     </mat-toolbar>
   <router-outlet></router-outlet>
-    
     <!-- Add Content Here -->
   </mat-sidenav-content>
 </mat-sidenav-container>

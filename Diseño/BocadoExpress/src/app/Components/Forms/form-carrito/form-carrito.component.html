@@ -1,1 +1,62 @@
-<p>form-carrito works!</p>
+<div class="contenedor">
+
+    <div class="col-md-12">
+
+    <form [formGroup]="carritoForm" (ngSubmit)="OnSubmit()">
+        <mat-card class="shipping">   
+            <mat-card-header>
+         <mat-card-title class="titulo">Carrito</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <br>
+  
+    <!-- NombreUsuario -->
+    
+        
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Nombre de usuario"  formControlName="NombreUsuario">
+                <mat-error *ngIf="carritoForm.controls['NombreUsuario'].hasError('required')">
+                    El nombre de usuario es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+     
+    <!-- NombreProducto -->
+    
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Nombre del producto"  formControlName="NombreProducto">
+                <mat-error *ngIf="carritoForm.controls['NombreProducto'].hasError('required')">
+                    El nombre del producto es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        
+    <!-- Total -->
+    
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Cantidad de productos" type="number" formControlName="Cantidad">
+                <mat-error *ngIf="carritoForm.controls['Cantidad'].hasError('required')">
+                    El total es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+
+    
+        
+    <!-- Estado -->
+            <div >
+            <mat-radio-group class="status">Estado:
+                <mat-radio-button color="primary" value="0">Activo</mat-radio-button>
+                <mat-radio-button color="primary" value="1">Inactivo</mat-radio-button>
+              </mat-radio-group>
+            </div>
+    
+
+            </mat-card-content>
+                <mat-card-actions>
+                <button mat-raised-button class="botonguardar" color="primary" type="submit">Guardar</button>
+            </mat-card-actions>
+            <br>
+            
+                </mat-card>
+                
+    </form>
+    </div>
+</div>

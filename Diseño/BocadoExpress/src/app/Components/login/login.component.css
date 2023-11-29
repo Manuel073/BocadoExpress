@@ -1,0 +1,161 @@
+.regiUsu{
+    
+text-align: center;
+margin-top: 40px;
+height: 52px;
+width: 40%;
+padding: 8px;
+margin-left: 400px;
+box-sizing: border-box;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+
+.regiContr{
+    text-align: center;
+    margin-top: 30px;
+    height: 52px;
+    width: 40%;
+padding: 8px;
+margin-left: 400px;
+box-sizing: border-box;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+.direcc{
+    text-align: center;
+    margin-top: 30px;
+    height: 52px;
+    width: 40%;
+padding: 8px;
+margin-left: 400px;
+box-sizing: border-box;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+
+
+.tele{
+    text-align: center;
+    margin-top: 30px;
+    height: 52px;
+    width: 40%;
+padding: 8px;
+margin-left: 400px;
+box-sizing: border-box;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+
+
+
+.correo{
+    
+    text-align: center;
+    margin-top: 30px;
+    height: 52px;
+    width: 40%;
+padding: 8px;
+margin-left: 400px;
+box-sizing: border-box;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+
+.registrar{
+    width: 10%;
+    padding: 8px;
+    margin-left: 600px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    text-align: center;
+    margin-top: 30px;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.registrar:hover {
+    background-color: #477049;
+}
+
+.tituloregistro{
+    font-family: cursive;
+    font-size: 40px;
+    color: rgb(24, 124, 54);
+    text-align: center;
+    
+}
+.tituloregis{
+    margin-top: 30px;
+    margin-left: 510px;
+
+}
+
+
+
+
+
+.ingreUsu{
+    text-align: center;
+    margin-top: 50px;
+    height: 52px;
+    width: 40%;
+    padding: 8px;
+    margin-left: 400px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.ingreContr{
+text-align: center;
+margin-top: 30px;
+height: 52px;
+width: 40%;
+padding: 8px;
+margin-left: 400px;
+box-sizing: border-box;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+
+.btnUsu{
+    width: 10%;
+    padding: 8px;
+    margin-left: 600px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    text-align: center;
+    margin-top: 30px;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btnUsu:hover {
+    background-color: #477049;
+}
+
+.ingreso{
+    font-family: cursive;
+    font-size: 40px;
+    color: rgb(24, 124, 54);
+    text-align: center;
+
+}
+
+.titulologin{
+    margin-top: 50px;
+    margin-left: 585px;
+
+}

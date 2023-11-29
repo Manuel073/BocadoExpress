@@ -1,1 +1,46 @@
-<p>form-metodo-pago works!</p>
+<div class="contenedor">
+
+    <div class="col-md-12">
+
+    <form [formGroup]="carritoForm" (ngSubmit)="OnSubmit()">
+        <mat-card class="shipping"> 
+            
+            <mat-card-header>
+        
+             <mat-card-title class="titulo">Metodo de pago</mat-card-title>
+        
+        </mat-card-header>
+
+        <mat-card-content>
+            <br>
+  
+    <!-- NombreUsuario -->
+    
+        
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Nombre metodo de pago"  formControlName="Nombre">
+                <mat-error *ngIf="carritoForm.controls['Nombre'].hasError('required')">
+                    El nombre es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+    
+    <!-- Estado -->
+            <div >
+            <mat-radio-group class="status">Estado:
+                <mat-radio-button color="primary" value="0">Activo</mat-radio-button>
+                <mat-radio-button color="primary" value="1">Inactivo</mat-radio-button>
+              </mat-radio-group>
+            </div>
+    
+
+            </mat-card-content>
+                <mat-card-actions>
+                <button mat-raised-button class="botonguardar" color="primary" type="submit">Guardar</button>
+            </mat-card-actions>
+            <br>
+            
+                </mat-card>
+                
+    </form>
+    </div>
+</div>

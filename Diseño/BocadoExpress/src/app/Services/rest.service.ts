@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class RestService {
 
   constructor(public api: HttpClient) { }
-  Url="https://localhost:7173/api/"
+  Url="https://localhost:7078/api/"
    
 
   public async Get(controller: string){
@@ -34,11 +34,20 @@ export class RestService {
     return result;
   }
 
-  public async Delete(controller: string, user:any,id:string){
+  public async Delete(controller: string,id:string){
     let result:any;
-    await this.api.delete(this.Url+controller+"/"+id, user).toPromise().then((data)=>{
+    await this.api.delete(this.Url+controller+"/"+id).toPromise().then((data)=>{
       result=data;
     });
+    return result;
+  }
+
+  public async GetParams(controller:string,url:string){
+    let result:any;
+    await this.api.get(this.Url+controller+'?'+url).toPromise().then((data)=>{
+      result=data;
+    });
+
     return result;
   }
 }

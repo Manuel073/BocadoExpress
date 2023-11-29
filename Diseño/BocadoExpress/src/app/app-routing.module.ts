@@ -2,22 +2,24 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UsuariosComponent } from './Components/usuarios/UsuariosComponent';
 import { CarritoComponent } from './Components/carrito/carrito.component';
-import { MetodoPagoComponent } from './Components/metodo-pago/metodo-pago.component';
 import { OrdenComponent } from './Components/orden/orden.component';
-import { OrdenDetalleComponent } from './Components/orden-detalle/orden-detalle.component';
 import { ProductoComponent } from './Components/producto/producto.component';
 import { ViviendaComponent } from './Components/vivienda/vivienda.component';
+import { OrdendetalleComponent } from './Components/ordendetalle/ordendetalle.component';
+import { MetodopagoComponent } from './Components/metodopago/metodopago.component';
+import { LoginComponent } from './Components/login/login.component';
 
 
 
 const routes: Routes = [
 {path: "usuarios",component:UsuariosComponent},
 {path: "carrito",component:CarritoComponent},
-{path: "metodo-pago",component:MetodoPagoComponent},
+{path: "metodopago",component:MetodopagoComponent},
 {path: "orden",component:OrdenComponent},
-{path: "orden-detalle",component:OrdenDetalleComponent},
+{path: "ordendetalle",component:OrdendetalleComponent},
 {path: "producto",component:ProductoComponent},
 {path: "vivienda",component:ViviendaComponent},
+
 
 ];
 

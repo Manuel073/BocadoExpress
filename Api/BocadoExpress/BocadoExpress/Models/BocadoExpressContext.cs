@@ -37,6 +37,7 @@ public partial class BocadoExpressContext : DbContext
     public virtual DbSet<OrdenDetalleView>OrdenDetalleView { get; set; }
     public virtual DbSet<CarritoViews> CarritoViews { get; set; }
     public virtual DbSet<ViviendaView> ViviendaView { get; set; }
+    public virtual DbSet<AccesUser> AccesUser { get; set; }
 
     public IEnumerable<object> MetodoPagos { get; internal set; }
     
@@ -117,7 +118,7 @@ public partial class BocadoExpressContext : DbContext
             entity.Property(e => e.nombremetod)
                 .HasMaxLength(50)
                 .IsUnicode(false)
-                .HasColumnName("nombre");
+                .HasColumnName("nombremetod");
             entity.Property(e => e.Status).HasColumnName("status");
         });
 
@@ -232,6 +233,51 @@ public partial class BocadoExpressContext : DbContext
             //entity.HasOne(d => d.IdUsuNavigation).WithMany(p => p.Vivienda)
              //  .HasForeignKey(d => d.IdUsu)
               //  .HasConstraintName("FK_Vivienda_Usuario");
+        });
+
+        modelBuilder.Entity<AccesUser>(entity =>
+        {
+            entity.HasKey(e => e.idControl);
+            entity.Property(e => e.idControl).HasColumnName("idControl");
+            entity.Property(e => e.usuario)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("Usuario");
+            entity.Property(e => e.contraseña)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("Contraseña");
+            entity.Property(e => e.celular)
+             .HasMaxLength(50)
+             .IsUnicode(false)
+             .HasColumnName("Celular");
+            entity.Property(e => e.correo)
+           .HasMaxLength(50)
+           .IsUnicode(false)
+           .HasColumnName("Correo");
+            entity.Property(e => e.direccion)
+               .HasMaxLength(50)
+               .IsUnicode(false)
+               .HasColumnName("Direccion");
+            
+           
+            entity.Property(e => e.status)
+            .HasMaxLength(50)
+            .IsUnicode(false)
+            .HasColumnName("status");
+            entity.Property(e => e.validlogin)
+               .HasMaxLength(50)
+               .IsUnicode(false)
+               .HasColumnName("ValidLogin");
+            entity.Property(e => e.idControl).HasColumnName("idControl");
+            entity.Property(e => e.usuario).HasColumnName("Usuario");
+            entity.Property(e => e.contraseña).HasColumnName("Contraseña");
+            entity.Property(e => e.celular).HasColumnName("Celular");
+            entity.Property(e => e.direccion).HasColumnName("Direccion");
+            entity.Property(e => e.correo).HasColumnName("Correo");
+            entity.Property(e => e.status).HasColumnName("status");
+            entity.Property(e => e.validlogin).HasColumnName("ValidLogin");
+
         });
 
         OnModelCreatingPartial(modelBuilder);

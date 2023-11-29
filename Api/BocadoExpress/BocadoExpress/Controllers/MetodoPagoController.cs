@@ -22,18 +22,11 @@ namespace BocadoExpress.Controllers
         }
 
         // GET: api/MetodoPago
-        [HttpGet]
-        public object GetMetodoPago()
+        [HttpGet("MetodoPago")]
+        public async Task<object> GetMetodoPago()
         {
-            var MetodoPagoGetEnabled = _context.MetodoPago.Where(s => s.Status == 0).Select(s => new
-            {
-                IdMetodopago = s.IdMetodopago.ToString(),
-                nombre = s.nombremetod.ToString()
-
-            }).ToList();
-
-
-            return MetodoPagoGetEnabled;
+            var TaskMetodo =await _context.MetodoPago.ToListAsync();
+            return TaskMetodo;
         }
 
         // GET: api/MetodoPago/5

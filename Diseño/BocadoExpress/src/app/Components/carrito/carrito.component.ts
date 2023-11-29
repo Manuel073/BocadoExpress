@@ -1,40 +1,52 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild,AfterViewInit} from '@angular/core';
 import { RestService } from 'src/app/Services/rest.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from "@angular/material/dialog";
+import { FormCarritoComponent } from '../Forms/form-carrito/form-carrito.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })
-export class CarritoComponent implements OnInit {
+export class CarritoComponent implements OnInit, AfterViewInit {
   displayedColumns: string[]= [];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
+  cargando:boolean;
   dataSource: MatTableDataSource<any>;
-  constructor(public api: RestService) {
+  constructor(public api: RestService, private matDialog:MatDialog) {
+    this.cargando=true;
     this.dataSource=new MatTableDataSource();
   }
-
+  ngAfterViewInit(): void {
+    this.paginator._intl.itemsPerPageLabel = 'Registros por pagina';
+    this.dataSource.paginator=this.paginator
+    this.dataSource.sort=this.sort;
+  }
+  openDialog(){
+    this.matDialog.open(FormCarritoComponent,{
+        width:'370px', 
+    })
+}
   
   ngOnInit(): void {
       this.getCarrito();
-      this.postCarrito();
-      this.putCarrito();
-      this.deleteCarrito();
+      //this.postCarrito();
+      //this.putCarrito();
+      //this.deleteCarrito();
   }
   public getCarrito(){
       this.api.Get("carrito").then((res)=>{
-
-        for (let index = 0; index < res.length; index++){
-          this.loadTable([res[index]])
-        }
-        this.dataSource.data=res
-        this.dataSource.paginator=this.paginator
-        this.dataSource.sort=this.sort;
-        console.log(res);
+        this.displayedColumns=Object.keys(res[0]);
+        this.dataSource.data=res;
+        this.displayedColumns.push('Acciones');
+       setTimeout(() => {
+        this.cargando=false;
+       }, 600);
       });
   }
 
@@ -55,37 +67,57 @@ export class CarritoComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  public postCarrito(){
-    this.api.Post("usuarios", {
+//   public postCarrito(){
+//     this.api.Post("usuarios", {
         
-      idUsu: 0,
-      idProduc: 0,
-      cantidad: 25,
-      status: 0,
-    })
+//       idUsu: 0,
+//       idProduc: 0,
+//       cantidad: 25,
+//       status: 0,
+//     })
+// }
+
+// public putCarrito(){
+//     this.api.Put("usuarios",1,{
+//       idControl: "1",
+//       idUsu: 0,
+//       idProduc: 0,
+//       cantidad: 25,
+//       status: 0,
+//     })
+// }
+
+public deleteCarrito(id){
+  this.api.Delete("carrito",id)
 }
-
-public putCarrito(){
-    this.api.Put("usuarios",1,{
-      idControl: "1",
-      idUsu: 0,
-      idProduc: 0,
-      cantidad: 25,
-      status: 0,
-    })
-}
-
-public deleteCarrito(){
-    this.api.Delete("usuarios",{
-
-      idUsu: 0,
-      idProduc: 0,
-      cantidad: 25,
-      status: 0,
+Eliminar(id){
+ 
+  Swal.fire({
+      title: '¿Desea eliminar la información?',
+      text: "Los cambios no se podran restablecer! ",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
       
-    },"2")
-}
+      if (result.isConfirmed) {
 
+          Swal.fire(
+            'Información eliminada',
+            `La descipcion del elemento ${id} ha sido retirado.`,
+            'success'
+          )
+          
+          setInterval(()=>{
+          window.location.reload();
+          }, 2000)
+
+          this.deleteCarrito(id) 
+      }
+    })
+  }
 }
 
 

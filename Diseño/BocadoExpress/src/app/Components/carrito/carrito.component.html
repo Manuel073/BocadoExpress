@@ -1,9 +1,24 @@
-<mat-form-field>
-    <mat-label>Entrada de datos</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Encontrar carrito" #input>
-  </mat-form-field>
+<ng-container class="loading-container" >
+  <div  [ngStyle]="{'display': this.cargando ? '' : 'none'}" >
+    <div *ngIf="cargando" class="spinner"></div>
+    <p class="carga">Cargando...</p>
+  </div>
+</ng-container>
+
+<div [ngStyle]="{'display': this.cargando==false ? '' : 'none'}" >
   
-  <div class="mat-elevation-z8">
+  <div class="titulota">
+    <h1 class="letter">Carrito</h1>
+  </div>
+
+  <div class="tabla">
+  
+  <div class="mat-elevation-z8" style="border-radius: 5px; background-color: #81caec;">
+
+    <mat-form-field>
+      <mat-label>Entrada de datos</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Encontrar carrito" #input>
+    </mat-form-field>
 
     <table mat-table [dataSource]="dataSource" matSort>
 
@@ -25,7 +40,7 @@
         </div>
               
         <div class="botonEliminar">
-          <a  class="opcion" > <span class="material-symbols-outlined">delete</span></a>
+          <a  class="opcion" (click)="Eliminar(categoria.carrito)"> <span class="material-symbols-outlined">delete</span></a>
             </div>         
             </td>
           </div>
@@ -47,4 +62,18 @@
   
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
+  </div>
+  
+
+    <div class="formagregar">
+             
+        <button class="boton" (click)="openDialog()" >Agregar
+      
+        <a class="agregar" ><span class="material-symbols-outlined">
+          forms_add_on
+          </span></a>
+         </button>
+         
+      </div>
+ 
   

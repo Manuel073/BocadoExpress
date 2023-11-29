@@ -1,1 +1,69 @@
-<p>form-orden works!</p>
+<div class="contenedor">
+
+    <div class="col-md-12">
+
+    <form [formGroup]="productosForm" (ngSubmit)="OnSubmit()">
+        <mat-card class="shipping">   
+            <mat-card-header>
+         <mat-card-title class="titulo">Orden</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <br>
+  
+    <!-- Nombre -->
+    
+        
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Nombre de usuario"  formControlName="Nombre">
+                <mat-error *ngIf="productosForm.controls['Nombre'].hasError('required')">
+                    El nombre es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+     
+    <!-- Total -->
+    
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Total de la compra" type="number" formControlName="Total">
+                <mat-error *ngIf="productosForm.controls['Total'].hasError('required')">
+                    El total es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        
+    <!-- Ciudad -->
+    
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Ciudad" formControlName="Ciudad">
+                <mat-error *ngIf="productosForm.controls['Ciudad'].hasError('required')">
+                    La ciudad es <strong>requerida</strong>
+                </mat-error>
+            </mat-form-field>
+
+    <!-- Ciudad -->
+    
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Metodo de pago" formControlName="MetodoPago">
+                <mat-error *ngIf="productosForm.controls['MetodoPago'].hasError('required')">
+                    El metodo de pago es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        
+    <!-- Estado -->
+            <div >
+            <mat-radio-group class="status">Estado:
+                <mat-radio-button color="primary" value="0">Activo</mat-radio-button>
+                <mat-radio-button color="primary" value="1">Inactivo</mat-radio-button>
+              </mat-radio-group>
+            </div>
+    
+
+            </mat-card-content>
+                <mat-card-actions>
+                <button mat-raised-button class="botonguardar" color="primary" type="submit">Guardar</button>
+            </mat-card-actions>
+            <br>
+            
+                </mat-card>
+                
+    </form>
+    </div>
+</div>
